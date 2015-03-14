@@ -7,18 +7,23 @@ struct node{
 struct node *add_linked_list(struct node *list,int n);
 struct node *add_series_to_linked_list(void);
 struct node *search_list(struct node *first,int n,int *order);
+struct node *del_node(struct node *first,int n);
 
 int main(void)
 {
 	struct node *first = NULL;
-	int order = 0;
+	int order = 0, number = 0;
 	// first = add_linked_list(first,10);
 	// first = add_linked_list(first,20);
 	first = add_series_to_linked_list();
-	printf("///////////////\r\n");
-	first = search_list(first,2,&order);
+	printf("///////enter search number////////\r\n");
+	scanf("%d",&number);
+	search_list(first,number,&order);
 	printf("%d\r\n",order);
-	// printf("%d %d %d\r\n",first->number,first->next->number,first->next->next->number);
+	printf("///////enter number to delete////////\r\n");
+	scanf("%d",&number);
+	del_node(first,number);
+	printf("%d %d %d\r\n",first->number,first->next->number,first->next->next->number);
 	return 0;
 }
 
@@ -50,4 +55,17 @@ struct node *search_list(struct node *first,int n,int *order){
 	}
 	return NULL;
 }
+
+struct node *del_node(struct node *first,int n){
+	struct node *p,*last;
+	for(p = first,last = NULL;p != NULL&& p->number!=n;last = p , p = p->next)
+		;
+	if(p==NULL) return first;
+	if(last==NULL) first = first->next;
+	else last->next = p->next ;
+	free(p);
+	return first;
+}
+
+
 
