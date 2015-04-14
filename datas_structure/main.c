@@ -1,47 +1,57 @@
 #include <stdio.h>
-#define size 10 
+#include "stack.h"
+#include "linked_list.h"
 
-typedef struct{
-	int contents[size];
-	int top;
-}stack;
-
-void init_stack(stack *stack);
-void push(stack *stack,int n);
-int pop(stack *stack);
-
-void main(void){
-	stack stack1;
-	init_stack(&stack1);
-	push(&stack1,2);
-	push(&stack1,5);
-	push(&stack1,3);
-	printf("%d %d %d \r\n",stack1.contents[0],stack1.contents[1],stack1.contents[2]);
-	printf("%d \r\n",pop(&stack1));
-	printf("%d %d %d \r\n",stack1.contents[0],stack1.contents[1],stack1.contents[2]);
+int main(void){
+/*	array_stack stack1;
+	stack1 = create_array_stack(5);
+	init_array_stack(&stack1);
+	push_array_stack(&stack1,2);
+	push_array_stack(&stack1,3);
+	pop_array_stack(&stack1);
+	push_array_stack(&stack1,5);
+	pop_array_stack(&stack1);
+	printf("%d %d %d %d %d\r\n",stack1.contents[0],stack1.contents[1],stack1.contents[2],stack1.contents[3],stack1.contents[4]);
+	destroy_array_stack(&stack1);
+	printf("%d %d %d %d %d\r\n",stack1.contents[0],stack1.contents[1],stack1.contents[2],stack1.contents[3],stack1.contents[4]);
+	*/
+	/*
+	int order=0,number=0;
+	struct singly_node *singly_list = NULL;
+	struct singly_node *search_list = NULL;
+	singly_list = add_nodes_singly_linked_list(singly_list);
+	// printf("///////enter search number////////\r\n");
+	// scanf("%d",&number);
+	// search_list = search_singly_linked_list_data(singly_list,number,&order);
+	// printf("%d %d\r\n",order,search_list->data);
+	// printf("///////enter search number////////\r\n");
+	// scanf("%d",&number);
+	// search_list = search_singly_linked_list_order(singly_list,3);
+	// printf("%d\r\n",search_list->data);
+	printf("///////enter del number////////\r\n");
+	scanf("%d",&number);
+	singly_list = del_node_singly_linked_list(singly_list,number);
+	// printf("%d\r\n",search_list->data);
+	search_list = search_singly_linked_list_data(singly_list,number,&order);
+	order=0;
+	// printf("%d %d\r\n",order,search_list->data);
+	printf("///////enter search number////////\r\n");
+	scanf("%d",&number);
+	search_list = search_singly_linked_list_data(singly_list,number,&order);
+	printf("%d %d\r\n",order,search_list->data);*/
+	struct double_node list,*double_list;
+	list.left=NULL;
+	list.right=NULL;
+	double_list=&list;
+	int number;
+	// double_list = add_double_linked_list(double_list,5);
+	// double_list = add_double_linked_list(double_list,4);
+	// printf("%d\r\n",double_list->right->data);
+	double_list = add_nodes_double_linked_list(double_list);
+	printf("///////enter search number////////\r\n");
+	scanf("%d",&number);
+	double_list = search_double_linked_list_data(double_list,number);
+	printf("%d\r\n",double_list->data);
+	return 0;
 }
 
-void init_stack(stack *stack){
-	int i=0;
-	stack->top=0;
-	for(;i<size;i++){
-		stack->contents[i]=0;
-	}
-}
-
-void push(stack *stack,int n){
-	if(n<size){
-		stack->contents[stack->top]=n;
-		(stack->top)++;
-	}else{
-		printf("stack is full");
-	}
-}
-
-int pop(stack *stack){
-	int value;
-	--(stack->top);
-	value=stack->contents[stack->top];
-	stack->contents[stack->top]=0;
-	return value;
-}
