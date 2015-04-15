@@ -21,4 +21,5 @@ struct singly_node *del_node_singly_linked_list(struct singly_node *list,int val
 static struct double_node *add_double_linked_list(struct double_node *list,int value);
 struct double_node *add_nodes_double_linked_list(struct double_node *list);
 struct double_node *search_double_linked_list_data(struct double_node *list,int value);
+struct double_node *del_node_double_linked_list(struct double_node *list,int value);
 #endif

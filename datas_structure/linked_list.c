@@ -63,9 +63,9 @@ static struct double_node *add_double_linked_list(struct double_node *list,int v
 		printf("Can not create node");
 		exit(EXIT_FAILURE);
 	} 
+	new_node->right=list;
 	list->left=new_node;
 	new_node->data=value;
-	new_node->right=list;
 	new_node->left=NULL;
 	return new_node;
 }
@@ -83,27 +83,69 @@ struct double_node *add_nodes_double_linked_list(struct double_node *list){
 struct double_node *search_double_linked_list_data(struct double_node *list,int value){
 	struct double_node *right,*left;
 	int lflag=1,rflag=1;
+	printf("search %d\r\n",list->data);
 	if(list->data==value) return list;
-	if(list->right!=NULL)right = list->right;
-	else rflag=0;
-	if(right->data==value) return right;
-	if(list->left!=NULL) left  = list->left;
-	else lflag=0;
-	if(left->data==value) return left;
-	while(rflag!=0&&lflag!=0){
+
+	if(list->right!=NULL){
+		right = list->right;
+		if(right->data==value) return right;
+	}else rflag=0;
+	
+
+	if(list->left!=NULL) {
+		left  = list->left;
+		if(left->data==value) return left;
+	}else lflag=0;
+	
+
+	while(rflag!=0||lflag!=0){
 		if(rflag){
-			if(list->right!=NULL){
-				right = right->right;
-				if(right->data==value) return right;
+			if(right->data==value) return right;
+			if(right->right!=NULL){
+				right = right->right;		
 			}else rflag=0;	
 		}
 		if(lflag){
-			if(list->left!=NULL){
-				left  = left->left;
-				if(right->data==value) return right;
+			if(left->data==value) return left;
+			if(left->left!=NULL){
+				left = left->left;			
 			}else lflag=0;
 		}	
 	}
-	printf("Can not find\r\n");
-	return list;		
+	printf("Can not find node\r\n");
+	return NULL;		
+}
+
+struct double_node *del_node_double_linked_list(struct double_node *list,int value){
+	struct double_node *search_node;
+	search_node = search_double_linked_list_data(list,value);
+	if(search_node!=NULL){
+		/*left end*/
+		if(search_node->left==NULL&&search_node->right!=NULL){
+			list=search_node->right;
+			list->left=NULL;
+			free(search_node);
+			return list;
+		}
+		/*right end*/
+		//else if(search_node->left!=NULL&&search_node->right==NULL){
+	
+		// 	// list=search_node->left->left;
+		// 	// list->right=NULL;
+		// 	// free(search_node);
+		// 	// return list;
+		// /*only one*/	
+		// }
+		else if(search_node->left==NULL&&search_node->right==NULL){
+			list->data=0;
+			return list;
+		/*normal one*/
+		}else{
+			search_node->left->right=search_node->right;
+			search_node->right->left=search_node->left;
+			free(search_node);
+			return list;
+		}
+	}
+	return NULL;		 
 }
