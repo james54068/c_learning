@@ -32,7 +32,13 @@ int main(void){
 	printf("%d\r\n",Isolate_rightmost0(5));
 }
 /*a,b must in same type*/
+/*
+*a^=*b;
+*b^=*a;
+*a^=*b;
+*/
 void swap_without_temp(int *a,int *b){
+	// *a^=*b^=*a^=*b; undefined behavior
 	*a^=*b;
 	*b^=*a;
 	*a^=*b;

@@ -41,6 +41,8 @@ int main(void){
 	search_list = search_singly_linked_list_data(singly_list,number,&order);
 	printf("%d %d\r\n",order,search_list->data);*/
 	
+	// printf("%d\r\n",x);
+	// print();
 	/*no point double_list to NULL->need create one to point as starter*/
 	struct double_node list,*double_list,*search_list;
 	/*init first one*/
@@ -65,6 +67,8 @@ int main(void){
 	scanf("%d",&number);
 	double_list=del_node_double_linked_list(double_list,number);
 	printf("%d %d\r\n",double_list->data,double_list->right->data);
+	
+	
 	
 	return 0;
 }

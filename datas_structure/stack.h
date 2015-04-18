@@ -1,6 +1,6 @@
 #ifndef __STACK_H_
 #define __STACK_H_
- 
+
 typedef struct{
 	int *contents;
 	int top;
@@ -12,5 +12,5 @@ void init_array_stack(array_stack *stack);
 void push_array_stack(array_stack *stack,int n);
 int pop_array_stack(array_stack *stack);
 inline void destroy_array_stack(array_stack *stack);
-
+void print(void);
 #endif

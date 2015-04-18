@@ -83,21 +83,18 @@ struct double_node *add_nodes_double_linked_list(struct double_node *list){
 struct double_node *search_double_linked_list_data(struct double_node *list,int value){
 	struct double_node *right,*left;
 	int lflag=1,rflag=1;
-	printf("search %d\r\n",list->data);
 	if(list->data==value) return list;
-
+	/*setup right way list*/
 	if(list->right!=NULL){
 		right = list->right;
 		if(right->data==value) return right;
 	}else rflag=0;
-	
-
+	/*setup left way list*/
 	if(list->left!=NULL) {
 		left  = list->left;
 		if(left->data==value) return left;
 	}else lflag=0;
-	
-
+	/*search until reach left_end and right_end*/
 	while(rflag!=0||lflag!=0){
 		if(rflag){
 			if(right->data==value) return right;
@@ -127,15 +124,7 @@ struct double_node *del_node_double_linked_list(struct double_node *list,int val
 			free(search_node);
 			return list;
 		}
-		/*right end*/
-		//else if(search_node->left!=NULL&&search_node->right==NULL){
-	
-		// 	// list=search_node->left->left;
-		// 	// list->right=NULL;
-		// 	// free(search_node);
-		// 	// return list;
-		// /*only one*/	
-		// }
+		/*right end always has first one*/
 		else if(search_node->left==NULL&&search_node->right==NULL){
 			list->data=0;
 			return list;
