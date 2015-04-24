@@ -10,6 +10,7 @@ void swap(int *a,int *b){
 /*left=0,right=9*/
 int quick_sort(int *array,int left,int right){
 	/*if left pivot is smallest && right pivot is largest*/
+	printf("this is quick_sort\r\n");
 	if(left>=right)return 1; 
 	int pivot=array[0],index=0;
 	int i=0,number=right-left+1;
@@ -28,34 +29,41 @@ int quick_sort(int *array,int left,int right){
 	return 1;
 }
 
-void bubble_sort(int *array,int length){
-	int i,j;
+int bubble_sort(int *array,int left,int right){
+	printf("this is bubble_sort\r\n");
+	int i,j,length=right-left+1;
 	for(i=0;i<length-1;i++){
 		for(j=0;j<length-1-i;j++){
 			if(array[j]>array[j+1]) swap(&array[j],&array[j+1]);
 		}
 	}
+	return 1;
 }
 
-void insert_sort(int *array,int length){
-	int i,j;
+int insert_sort(int *array,int left,int right){
+	printf("this is insert_sort\r\n");
+	int i,j,length=right-left+1;
 	for(i=1;i<length;i++){
 		for(j=i;j>0;j--){
 			if(array[j-1]>array[j]) swap(&array[j],&array[j-1]);
 		}
 	}
+	return 1;
 }
 
-void selection_sort(int *array,int length){
-	int i,j;
+int selection_sort(int *array,int left,int right){
+	printf("this is selection_sort\r\n");
+	int i,j,length=right-left+1;
 	for(i=0;i<length-1;i++){
 		for(j=length-1;j>i;j--){
 			if(array[j-1]>array[j]) swap(&array[j],&array[j-1]);
 		}
 	}
+	return 1;
 }
 
 int merge_sort(int *array,int left,int right){
+	printf("this is merge_sort\r\n");
 	int mid = (left+right)/2;
 	if(right>left){
 		/*left*/
